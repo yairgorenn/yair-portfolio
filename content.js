@@ -1,7 +1,7 @@
 // Edit the English and Hebrew copy side by side. Paths are relative to index.html.
 const portfolio = {
   profileImage: './assets/profile.jpg',
-  email: '',
+  email: 'yairgorenn@gmail.com',
   github: 'https://github.com/yairgorenn',
   copy: {
     skip: ['Skip to content', 'דילוג לתוכן'],
@@ -61,5 +61,5 @@ const portfolio = {
       description: ['Connecting industrial controllers, software applications and external devices.', 'חיבור בין בקרים תעשייתיים, יישומי תוכנה והתקנים חיצוניים.']
     }
   ],
-  technologies: ['OMRON', 'PLC', 'HMI', 'EtherCAT', 'Modbus TCP', 'CANopen', 'Machine Vision', 'Motion Control', 'Python', 'PostgreSQL', 'Git', 'GitHub', 'Railway', 'REST APIs']
+  technologies: ['OMRON', 'PLC', 'HMI', 'EtherCAT', 'Modbus TCP', 'EtherNet/IP', 'PLCopen', 'Machine Vision', 'Motion Control', 'Python', 'C#', 'PostgreSQL', 'Git', 'GitHub', 'Railway', 'REST APIs']
 };
