@@ -11,6 +11,24 @@ function element(tag, text, className) {
   return node;
 }
 
+function renderGroups(container, groups, translated, technology = false) {
+  container.replaceChildren(...groups.map(group => {
+    const panel = element('div', '', 'group-panel');
+    const list = element('ul', '', technology ? 'chips' : 'expert-items');
+    list.replaceChildren(...group.items.map(value => {
+      const item = element('li', technology ? value : translated(value));
+      if (technology) {
+        item.dir = 'ltr';
+        item.lang = 'en';
+      }
+      return item;
+    }));
+    panel.append(element('h3', translated(group.title)), list);
+    return panel;
+  }));
+}
+
+
 function render(language) {
   const index = language === 'he' ? 1 : 0;
   const translated = pair => pair[index];
@@ -26,13 +44,7 @@ function render(language) {
     button.setAttribute('aria-pressed', String(button.dataset.lang === language));
   }
 
-  document.querySelector('#skills').replaceChildren(...expertise.map((title, i) => {
-    const card = element('div', '', 'expert');
-    const number = element('span', String(i + 1).padStart(2, '0'), 'card-index');
-    number.setAttribute('aria-hidden', 'true');
-    card.append(number, element('h3', translated(title)));
-    return card;
-  }));
+  renderGroups(document.querySelector('#skills'), expertise, translated);
 
   document.querySelector('#project-list').replaceChildren(...projects.map(project => {
     const card = element('article', '', 'project');
@@ -52,12 +64,7 @@ function render(language) {
     return card;
   }));
 
-  document.querySelector('#tech-list').replaceChildren(...technologies.map(name => {
-    const item = element('li', name);
-    item.dir = 'ltr';
-    if (index) item.lang = 'en';
-    return item;
-  }));
+  renderGroups(document.querySelector('#tech-list'), technologies, translated, true);
 }
 
 const email = document.querySelector('#email');
