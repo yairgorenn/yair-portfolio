@@ -14,7 +14,14 @@ const portfolio = {
     explore: ['Explore project areas', 'לתחומי הפרויקטים'],
     aboutNav: ['About', 'אודות'],
     about: ['About Me', 'עליי'],
-    bio: ['I have hands-on experience in industrial control, troubleshooting, automation, machine systems and software development. I like understanding how systems work, taking on engineering problems and developing solutions that bring hardware and software together. I approach problems with an engineering mindset and learn independently as new technologies and challenges come up.', 'יש לי ניסיון מעשי בבקרה תעשייתית, איתור תקלות, אוטומציה, מערכות מכונה ופיתוח תוכנה. אני אוהב להבין איך מערכות עובדות, להתמודד עם בעיות הנדסיות ולפתח פתרונות שמחברים בין חומרה לתוכנה. אני ניגש לבעיות בחשיבה הנדסית, והסקרנות הטכנולוגית שלי מניעה אותי ללמוד ולהתפתח באופן עצמאי.'],
+    bio: ["I am an Industrial Automation and Control Systems Engineer with extensive hands-on experience in PLC programming, motion control, machine vision, industrial communication, and machine automation.","אני מהנדס אוטומציה תעשייתית ומערכות בקרה, עם ניסיון מעשי רחב בתכנות PLC, בבקרת תנועה, במערכות ראייה ממוחשבת, בתקשורת תעשייתית ובאוטומציה של מכונות."],
+    systems: ["My expertise goes beyond programming controllers. I focus on understanding machines as complete systems, combining mechanical processes, electrical hardware, control systems, and software to develop reliable and practical solutions.","העבודה שלי כוללת הרבה מעבר לתכנות בקרים. אני מתמקד בהבנת המכונה כמערכת שלמה, ומשלב תהליכים מכניים, חומרה חשמלית, מערכות בקרה ותוכנה כדי לפתח פתרונות אמינים ומעשיים."],
+    equipment: ["Over the years, I have gained experience working with a wide range of industrial technologies, including servo drives, variable frequency drives, sensors, safety systems, temperature controllers, measurement instruments, and industrial communication networks.","עם השנים צברתי ניסיון בעבודה עם מגוון טכנולוגיות תעשייתיות, ובהן דרייברים לסרוו, וסתי תדר, חיישנים, מערכות בטיחות, בקרי טמפרטורה, מכשירי מדידה ורשתות תקשורת תעשייתיות."],
+    software: ["Alongside industrial automation, I have a strong interest in software development and computer technologies, with programming experience in Python, C#, Java, and VB.NET. I enjoy combining software with industrial hardware to solve engineering challenges, improve processes, and develop new capabilities.","לצד האוטומציה התעשייתית, אני מתעניין בפיתוח תוכנה ובטכנולוגיות מחשוב, ויש לי ניסיון בתכנות ב־Python, ב־C#, ב־Java וב־VB.NET. אני נהנה לשלב תוכנה עם חומרה תעשייתית כדי לפתור אתגרים הנדסיים, לשפר תהליכים ולפתח יכולות חדשות."],
+    curiosity: ["I am naturally curious about technology and enjoy understanding how things work, troubleshooting complex problems, and continuously expanding my knowledge.","יש לי סקרנות טבעית לטכנולוגיה. אני נהנה להבין איך דברים עובדים, לאתר ולפתור תקלות מורכבות ולהמשיך להרחיב את הידע שלי."],
+    philosophy: ["My Philosophy","הגישה שלי"],
+    sharing: ["I believe that sharing knowledge, discoveries, and practical solutions strengthens our own understanding and helps others move forward.","אני מאמין ששיתוף ידע, תגליות ופתרונות מעשיים מעמיק את ההבנה שלנו ועוזר לאחרים להתקדם."],
+    motto: ["There is no need to reinvent the wheel when we can learn from one another and build something better.","אין צורך להמציא את הגלגל מחדש כשאפשר ללמוד זה מזה ולבנות משהו טוב יותר."],
     expertiseNav: ['Expertise', 'תחומי ידע'],
     expertise: ['Technical Expertise', 'תחומי ידע טכניים'],
     projectsNav: ['Projects', 'פרויקטים'],
@@ -30,14 +37,16 @@ const portfolio = {
     top: ['Back to top', 'חזרה לראש העמוד']
   },
   expertise: [
-    ['Industrial Automation & PLC Programming', 'אוטומציה תעשייתית ותכנות PLC'],
-    ['Motion Control & Servo Systems', 'בקרת תנועה ומערכות סרוו'],
-    ['Machine Vision & Quality Inspection', 'ראייה ממוחשבת ובקרת איכות'],
-    ['Industrial Communication & Integration', 'תקשורת תעשייתית ושילוב מערכות'],
-    ['Python & Software Development', 'פיתוח תוכנה ב־Python'],
-    ['Robotics & Machine Systems', 'רובוטיקה ומערכות מכונה'],
-    ['Troubleshooting & Technical Problem Solving', 'איתור תקלות ופתרון בעיות טכניות'],
-    ['AI-Driven Automation', 'אוטומציה בעזרת בינה מלאכותית']
+    ["PLC Programming & Industrial Control Systems","תכנות PLC ומערכות בקרה תעשייתיות"],
+    ["Motion Control & Servo Systems","בקרת תנועה ומערכות סרוו"],
+    ["Machine Vision & Industrial Inspection","ראייה ממוחשבת ובדיקות תעשייתיות"],
+    ["Machine Automation & System Integration","אוטומציה של מכונות ושילוב מערכות"],
+    ["Industrial Communication Networks","רשתות תקשורת תעשייתיות"],
+    ["Troubleshooting & Technical Problem Solving","איתור תקלות ופתרון בעיות טכניות"],
+    ["Python & Software Development","Python ופיתוח תוכנה"],
+    ["Hardware & Software Integration","שילוב חומרה ותוכנה"],
+    ["Robotics & Machine Systems","רובוטיקה ומערכות מכונה"],
+    ["AI-Driven Automation","אוטומציה בעזרת בינה מלאכותית"]
   ],
   projects: [
     {
