@@ -127,27 +127,44 @@ function projectResults(results, translated) {
   return stats;
 }
 
+function projectGallery(images, translated) {
+  const gallery = element('div', '', 'project-gallery');
+  for (const image of images) {
+    const link = element('a');
+    link.href = image.src;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.append(projectImage(image, translated), element('span', translated(copy.projectFullImage)));
+    gallery.append(link);
+  }
+  return gallery;
+}
+
 function projectCard(project, translated, expanded) {
   const card = element('article', '', project.featured ? 'project project-featured' : 'project');
+  if (project.id) card.id = project.id;
   const label = project.type === 'category' ? copy.category : copy.project;
   const title = translated(project.title);
   card.append(
     element('span', translated(label), 'card-index'),
-    element('h3', title),
-    element('p', translated(project.description))
+    element('h3', title)
   );
+  if (project.subtitle) card.append(element('p', translated(project.subtitle), 'project-subtitle'));
+  card.append(element('p', translated(project.description)));
 
   // Keep the original single-image field usable alongside the new gallery.
   if (project.image) card.append(projectImage({ src: project.image, alt: project.imageAlt }, translated));
 
-  const { overview, problem, solution, architecture, results, equipment, role, images, video } = project;
+  const { overview, problem, solution, features, approach, architecture, results, equipment, role, images, video } = project;
   const id = youtubeId(video?.url);
   if (!overview && !problem && !solution && !architecture && !results?.length &&
-      !equipment?.length && !role && !images?.length && !id) return card;
+      !features?.length && !approach?.length && !equipment?.length && !role && !images?.length && !id) return card;
 
   const details = element('details', '', 'project-details');
   details.open = expanded;
   details.append(element('summary', translated(copy.projectDetails)));
+
+  if (project.featured && images?.length) details.append(projectGallery(images, translated));
 
   const sections = [
     [copy.projectOverview, overview],
@@ -157,6 +174,16 @@ function projectCard(project, translated, expanded) {
   for (const [heading, body] of sections) {
     if (!body) continue;
     details.append(element('h4', translated(heading)), element('p', translated(body)));
+  }
+
+  for (const [heading, items, tag] of [
+    [copy.projectFeatures, features, 'ul'],
+    [copy.projectApproach, approach, 'ol']
+  ]) {
+    if (!items?.length) continue;
+    const list = element(tag, '', 'project-detail-list');
+    list.append(...items.map(item => element('li', translated(item))));
+    details.append(element('h4', translated(heading)), list);
   }
 
   if (architecture) {
@@ -179,18 +206,7 @@ function projectCard(project, translated, expanded) {
     details.append(element('h4', translated(project.featured ? copy.projectTechnologies : copy.projectEquipment)), list);
   }
   if (role) details.append(element('h4', translated(copy.projectRole)), element('p', translated(role)));
-  if (images?.length) {
-    const gallery = element('div', '', 'project-gallery');
-    for (const image of images) {
-      const link = element('a');
-      link.href = image.src;
-      link.target = '_blank';
-      link.rel = 'noopener';
-      link.append(projectImage(image, translated), element('span', translated(copy.projectFullImage)));
-      gallery.append(link);
-    }
-    details.append(gallery);
-  }
+  if (!project.featured && images?.length) details.append(projectGallery(images, translated));
   if (id) details.append(videoPreview(id, video.poster || images?.[0]?.src || project.image, title, translated));
   card.append(details);
   return card;

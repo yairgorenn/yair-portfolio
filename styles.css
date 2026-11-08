@@ -205,3 +205,16 @@ html[dir=rtl] .project-stats dd { text-align: right; }
   .architecture-outputs > li:not(:first-child)::before { display: none; }
   .project-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+.project .project-subtitle {
+  margin-block: 0 .55rem;
+  color: var(--blue);
+  font-weight: 600;
+}
+.project-detail-list {
+  margin-block: .35rem 0;
+  padding-inline-start: 1.35rem;
+  color: var(--muted);
+}
+.project-detail-list li + li { margin-block-start: .3rem; }
+.project-featured .project-gallery { max-width: 54rem; }

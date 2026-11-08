@@ -24,11 +24,13 @@ const portfolio = {
     expertise: ['Technical Expertise', 'תחומי ידע טכניים'],
     projectsNav: ['Projects', 'פרויקטים'],
     projects: ['Selected Projects', 'פרויקטים נבחרים'],
-    projectIntro: ['A featured engineering project, followed by other areas of work.', 'פרויקט הנדסי נבחר, ואחריו תחומי עיסוק נוספים.'],
+    projectIntro: ['Selected engineering projects and other areas of work.', 'פרויקטים הנדסיים נבחרים ותחומי עיסוק נוספים.'],
     category: ['Project area', 'תחום פרויקט'],
     project: ['Personal project', 'פרויקט אישי'],
     projectOverview: ['Project Overview', 'סקירת הפרויקט'],
     projectChallenge: ['The Challenge', 'האתגר'],
+    projectFeatures: ['Key Features', 'יכולות מרכזיות'],
+    projectApproach: ['Engineering Approach', 'תהליך הפיתוח'],
     projectArchitecture: ['System Architecture', 'ארכיטקטורת המערכת'],
     projectOutputs: ['Processing outputs', 'תוצרי העיבוד'],
     projectResults: ['Results', 'תוצאות'],
@@ -96,6 +98,11 @@ const portfolio = {
         'Python prepares the documents for extraction with the OpenAI API. It then checks the extracted items and quantities independently against a PostgreSQL catalog of about 50,000 products, splits documents containing multiple orders, and flags exceptions for review. The system generates Excel files for Priority ERP and the supplier portal, sends email replies and alerts, and records statistics. A configuration variable selects the AI model without changes to the core processing logic.',
         'Python מכין את המסמכים לחילוץ פריטים וכמויות באמצעות OpenAI API. לאחר מכן המערכת מאמתת את הנתונים בנפרד מול קטלוג PostgreSQL של כ־50,000 פריטים, מפצלת מסמכים שמכילים כמה הזמנות ומסמנת חריגות לבדיקה. היא מפיקה קובצי Excel עבור Priority ERP ופורטל הספקים, שולחת תשובות והתראות בדוא״ל ומתעדת נתונים לדשבורד. את מודל ה־AI אפשר להחליף דרך משתנה תצורה, בלי לשנות את לוגיקת העיבוד המרכזית.'
       ],
+      features: [
+        ['Email and web intake for PDF and Excel orders, including documents with multiple orders.', 'קליטת הזמנות PDF ו־Excel דרך דוא״ל או העלאה באתר, כולל מסמכים עם כמה הזמנות.'],
+        ['Catalog validation for item identifiers and quantities, with exceptions flagged for review.', 'אימות מק״טים וכמויות מול הקטלוג, עם סימון חריגות לבדיקה.'],
+        ['Excel export for Priority ERP and the supplier portal, plus email replies, alerts, and dashboard statistics.', 'ייצוא ל־Excel עבור Priority ERP ופורטל הספקים, לצד תשובות בדוא״ל, התראות ונתוני דשבורד.']
+      ],
       architecture: {
         steps: [
           ['Email / Web Upload', 'דוא״ל / העלאה דרך האתר'],
@@ -121,6 +128,59 @@ const portfolio = {
         'תכננתי את הארכיטקטורה, פיתחתי את התוכנה וחיברתי אותה למסד הנתונים ול־OpenAI API. הייתי אחראי גם לבדיקות, לפריסה בענן ב־Railway ולתפעול השוטף. ניהלתי את גרסאות הקוד ב־GitHub.'
       ],
       images: []
+    },
+    {
+      type: 'project',
+      featured: true,
+      id: 'product-catalog',
+      title: ['Product Catalog & Order Preparation', 'קטלוג מוצרים והכנת הזמנות'],
+      subtitle: [
+        'Python Desktop Application for Industrial Product Search and Order Preparation',
+        'יישום שולחני ב־Python לחיפוש מוצרים תעשייתיים ולהכנת הזמנות'
+      ],
+      description: [
+        'A standalone Windows application that brings catalog search, pricing, and order document preparation into one workflow.',
+        'יישום עצמאי ל־Windows שמרכז חיפוש בקטלוג, חישובי מחיר והכנת מסמכי הזמנה בתהליך עבודה אחד.'
+      ],
+      overview: [
+        'I identified recurring obstacles in an ERP-based order preparation workflow and built a desktop application around the users’ needs. It combines a local product database, search, a graphical interface, and document generation.',
+        'זיהיתי קשיים שחזרו בתהליך הכנת הזמנות במערכת ERP ופיתחתי יישום שולחני לפי צורכי המשתמשים. היישום משלב מסד נתונים מקומי של מוצרים, חיפוש, ממשק גרפי והפקת מסמכים.'
+      ],
+      problem: [
+        'Finding products meant navigating several screens with limited search options. Product images were hard to access alongside catalog records. The goal was to simplify those frequent tasks while keeping the ERP in its existing role.',
+        'איתור מוצר דרש מעבר בין כמה מסכים, עם אפשרויות חיפוש מוגבלות וגישה לא נוחה לתמונות לצד נתוני הקטלוג. המטרה הייתה לפשט את הפעולות השכיחות האלה במסגרת תהליך העבודה הקיים עם ה־ERP.'
+      ],
+      solution: [
+        'I built a standalone Windows application with Python, Tkinter, and SQLite. Users can search the catalog locally, compare product records and images, select items and quantities, and prepare documents or Outlook drafts from the same interface.',
+        'פיתחתי יישום עצמאי ל־Windows באמצעות Python, Tkinter ו־SQLite. מאותו ממשק אפשר לחפש בקטלוג המקומי, לעיין בנתוני המוצרים ובתמונותיהם, לבחור פריטים וכמויות ולהכין מסמכים או טיוטות ב־Outlook.'
+      ],
+      features: [
+        ['Search by internal SKU, manufacturer part number, or description, with regular expressions for processing search patterns.', 'חיפוש לפי מק״ט פנימי, מק״ט יצרן או תיאור, עם ביטויים רגולריים לעיבוד תבניות חיפוש.'],
+        ['Product images alongside results and catalog search without a server connection.', 'הצגת תמונות מוצרים לצד תוצאות החיפוש וחיפוש בקטלוג ללא חיבור לשרת.'],
+        ['Item and quantity selection, pricing, two levels of discounts, and automatic line and order totals.', 'בחירת פריטים וכמויות, תמחור, שתי רמות הנחה וחישוב אוטומטי של סכומי שורה והזמנה.'],
+        ['Customer information management, multi-page PDF generation, and Excel export.', 'ניהול פרטי לקוח, הפקת מסמכי PDF מרובי עמודים וייצוא ל־Excel.'],
+        ['Outlook integration to prepare outgoing messages with attachments.', 'שילוב עם Outlook להכנת הודעות יוצאות עם קבצים מצורפים.']
+      ],
+      approach: [
+        ['Identify the workflow problem and clarify users’ needs.', 'זיהוי הבעיה בתהליך הקיים והבנת צורכי המשתמשים.'],
+        ['Design the standalone desktop architecture and build the graphical interface.', 'תכנון ארכיטקטורה ליישום שולחני עצמאי ובניית הממשק הגרפי.'],
+        ['Implement local searches, pricing rules, and order calculations.', 'מימוש חיפוש מקומי, כללי תמחור וחישובי הזמנה.'],
+        ['Integrate document generation and Outlook, test the application, and package it as a Windows executable.', 'שילוב הפקת המסמכים ו־Outlook, בדיקת היישום ואריזתו כקובץ הפעלה ל־Windows.']
+      ],
+      equipment: ['Python', 'Tkinter', 'SQLite', 'Regular Expressions', 'ReportLab', 'openpyxl', 'Outlook COM', 'PyInstaller'],
+      role: [
+        'I independently designed and developed the application, from identifying the problem and defining the architecture through interface design, Python and database development, business logic, document generation, integrations, testing, and Windows packaging.',
+        'תכננתי ופיתחתי את היישום באופן עצמאי, מזיהוי הבעיה ותכנון הארכיטקטורה ועד לעיצוב הממשק, פיתוח ב־Python והקמת מסד הנתונים, מימוש הלוגיקה העסקית, הפקת מסמכים, אינטגרציה, בדיקות ואריזה ל־Windows.'
+      ],
+      images: [
+        {
+          src: './assets/product-catalog-redacted.jpg',
+          alt: [
+            'Hebrew Windows application showing catalog search, selected order items, and PDF, Excel, and email controls. Product details are obscured.',
+            'ממשק היישום בעברית המציג חיפוש בקטלוג, פריטים שנבחרו להזמנה וכפתורי PDF, Excel ודוא״ל. פרטי המוצרים מוסתרים.'
+          ]
+        }
+      ]
     },
     {
       type: 'category',
