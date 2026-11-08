@@ -96,8 +96,39 @@ function videoPreview(id, poster, title, translated) {
   return video;
 }
 
-function projectCard(project, translated) {
-  const card = element('article', '', 'project');
+function projectArchitecture({ steps, outputs }, translated) {
+  const flow = element('ol', '', 'architecture-flow');
+  for (const step of steps) {
+    const stage = element('li');
+    stage.append(element('span', translated(step), 'architecture-node'));
+    flow.append(stage);
+  }
+
+  const branches = element('ul', '', 'architecture-outputs');
+  branches.setAttribute('aria-label', translated(copy.projectOutputs));
+  for (const output of outputs) {
+    const branch = element('li');
+    branch.append(element('span', translated(output), 'architecture-node'));
+    branches.append(branch);
+  }
+  flow.lastElementChild.append(branches);
+  return flow;
+}
+
+function projectResults(results, translated) {
+  const stats = element('dl', '', 'project-stats');
+  for (const { value, label } of results) {
+    const metric = element('div');
+    const number = element('dd', value);
+    number.dir = 'ltr';
+    metric.append(element('dt', translated(label)), number);
+    stats.append(metric);
+  }
+  return stats;
+}
+
+function projectCard(project, translated, expanded) {
+  const card = element('article', '', project.featured ? 'project project-featured' : 'project');
   const label = project.type === 'category' ? copy.category : copy.project;
   const title = translated(project.title);
   card.append(
@@ -109,15 +140,34 @@ function projectCard(project, translated) {
   // Keep the original single-image field usable alongside the new gallery.
   if (project.image) card.append(projectImage({ src: project.image, alt: project.imageAlt }, translated));
 
-  const { problem, solution, equipment, images, video } = project;
+  const { overview, problem, solution, architecture, results, equipment, role, images, video } = project;
   const id = youtubeId(video?.url);
-  if (!problem && !solution && !equipment?.length && !images?.length && !id) return card;
+  if (!overview && !problem && !solution && !architecture && !results?.length &&
+      !equipment?.length && !role && !images?.length && !id) return card;
 
   const details = element('details', '', 'project-details');
+  details.open = expanded;
   details.append(element('summary', translated(copy.projectDetails)));
-  for (const [heading, body] of [[copy.projectProblem, problem], [copy.projectSolution, solution]]) {
+
+  const sections = [
+    [copy.projectOverview, overview],
+    [project.featured ? copy.projectChallenge : copy.projectProblem, problem],
+    [copy.projectSolution, solution]
+  ];
+  for (const [heading, body] of sections) {
     if (!body) continue;
     details.append(element('h4', translated(heading)), element('p', translated(body)));
+  }
+
+  if (architecture) {
+    details.append(element('h4', translated(copy.projectArchitecture)), projectArchitecture(architecture, translated));
+  }
+  if (results?.length) {
+    details.append(
+      element('h4', translated(copy.projectResults)),
+      element('p', translated(copy.projectSnapshot)),
+      projectResults(results, translated)
+    );
   }
   if (equipment?.length) {
     const list = element('ul', '', 'chips');
@@ -126,18 +176,25 @@ function projectCard(project, translated) {
       item.dir = 'auto';
       return item;
     }));
-    details.append(element('h4', translated(copy.projectEquipment)), list);
+    details.append(element('h4', translated(project.featured ? copy.projectTechnologies : copy.projectEquipment)), list);
   }
+  if (role) details.append(element('h4', translated(copy.projectRole)), element('p', translated(role)));
   if (images?.length) {
     const gallery = element('div', '', 'project-gallery');
-    gallery.append(...images.map(image => projectImage(image, translated)));
+    for (const image of images) {
+      const link = element('a');
+      link.href = image.src;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.append(projectImage(image, translated), element('span', translated(copy.projectFullImage)));
+      gallery.append(link);
+    }
     details.append(gallery);
   }
   if (id) details.append(videoPreview(id, video.poster || images?.[0]?.src || project.image, title, translated));
   card.append(details);
   return card;
 }
-
 
 function render(language) {
   const index = language === 'he' ? 1 : 0;
@@ -156,7 +213,9 @@ function render(language) {
 
   renderGroups(document.querySelector('#skills'), expertise, translated);
 
-  document.querySelector('#project-list').replaceChildren(...projects.map(project => projectCard(project, translated)));
+  const projectList = document.querySelector('#project-list');
+  const expanded = [...projectList.children].map(card => card.querySelector('details')?.open ?? false);
+  projectList.replaceChildren(...projects.map((project, i) => projectCard(project, translated, expanded[i] ?? false)));
 
   renderGroups(document.querySelector('#tech-list'), technologies, translated, true);
 }

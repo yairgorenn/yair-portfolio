@@ -24,12 +24,21 @@ const portfolio = {
     expertise: ['Technical Expertise', 'תחומי ידע טכניים'],
     projectsNav: ['Projects', 'פרויקטים'],
     projects: ['Selected Projects', 'פרויקטים נבחרים'],
-    projectIntro: ['These cards describe project areas. Individual projects and technical details will be added over time.', 'הכרטיסיות מציגות תחומי פרויקט כלליים. בהמשך יתווספו פרויקטים אישיים ופרטים טכניים.'],
+    projectIntro: ['A featured engineering project, followed by other areas of work.', 'פרויקט הנדסי נבחר, ואחריו תחומי עיסוק נוספים.'],
     category: ['Project area', 'תחום פרויקט'],
     project: ['Personal project', 'פרויקט אישי'],
+    projectOverview: ['Project Overview', 'סקירת הפרויקט'],
+    projectChallenge: ['The Challenge', 'האתגר'],
+    projectArchitecture: ['System Architecture', 'ארכיטקטורת המערכת'],
+    projectOutputs: ['Processing outputs', 'תוצרי העיבוד'],
+    projectResults: ['Results', 'תוצאות'],
+    projectSnapshot: ['Dashboard snapshot', 'נתוני צילום מצב מהדשבורד'],
+    projectTechnologies: ['Technologies', 'טכנולוגיות'],
+    projectRole: ['My Role', 'התפקיד שלי'],
+    projectFullImage: ['Open full-size image', 'פתיחת התמונה בגודל מלא'],
     projectDetails: ['Project details', 'פרטי הפרויקט'],
     projectProblem: ['Engineering problem', 'הבעיה ההנדסית'],
-    projectSolution: ['Solution', 'הפתרון'],
+    projectSolution: ['The Solution', 'הפתרון'],
     projectEquipment: ['Technologies & equipment', 'טכנולוגיות וציוד'],
     playVideo: ['Play demo video', 'הפעלת סרטון הדגמה'],
     stack: ['Toolbox', 'ארגז כלים'],
@@ -67,6 +76,52 @@ const portfolio = {
     }
   ],
   projects: [
+    {
+      type: 'project',
+      featured: true,
+      title: ['AI-Powered Purchase Order Automation', 'אוטומציה של הזמנות רכש בעזרת בינה מלאכותית'],
+      description: [
+        'An end-to-end system that turns incoming industrial purchase orders into validated Excel files for Priority ERP and a supplier portal.',
+        'מערכת מקצה לקצה שהופכת הזמנות רכש נכנסות לקובצי Excel מאומתים עבור Priority ERP ופורטל ספקים.'
+      ],
+      overview: [
+        'I developed the system to automate purchase order intake in an industrial setting. Orders arrive through an Email Worker or are uploaded manually in the web interface.',
+        'פיתחתי את המערכת כדי להפוך את קליטת הזמנות הרכש בסביבה תעשייתית לתהליך אוטומטי. ההזמנות מגיעות דרך Email Worker או מועלות ידנית בממשק האינטרנט.'
+      ],
+      problem: [
+        'Orders arrive as PDF or Excel files in different formats. A document can contain several orders, and part numbers with leading zeros, quantities, and unrelated content all need to be handled correctly before import.',
+        'הזמנות מגיעות כקובצי PDF או Excel בפורמטים שונים. מסמך אחד עשוי להכיל כמה הזמנות, ולפני הייבוא צריך לטפל נכון במק״טים עם אפסים מובילים ובכמויות, ולסנן תוכן שאינו שייך להזמנה.'
+      ],
+      solution: [
+        'Python prepares the documents for extraction with the OpenAI API. It then checks the extracted items and quantities independently against a PostgreSQL catalog of about 50,000 products, splits documents containing multiple orders, and flags exceptions for review. The system generates Excel files for Priority ERP and the supplier portal, sends email replies and alerts, and records statistics. A configuration variable selects the AI model without changes to the core processing logic.',
+        'Python מכין את המסמכים לחילוץ פריטים וכמויות באמצעות OpenAI API. לאחר מכן המערכת מאמתת את הנתונים בנפרד מול קטלוג PostgreSQL של כ־50,000 פריטים, מפצלת מסמכים שמכילים כמה הזמנות ומסמנת חריגות לבדיקה. היא מפיקה קובצי Excel עבור Priority ERP ופורטל הספקים, שולחת תשובות והתראות בדוא״ל ומתעדת נתונים לדשבורד. את מודל ה־AI אפשר להחליף דרך משתנה תצורה, בלי לשנות את לוגיקת העיבוד המרכזית.'
+      ],
+      architecture: {
+        steps: [
+          ['Email / Web Upload', 'דוא״ל / העלאה דרך האתר'],
+          ['Python Document Processing', 'עיבוד מסמכים ב־Python'],
+          ['OpenAI API', 'OpenAI API'],
+          ['Python Validation + PostgreSQL Product Catalog', 'אימות ב־Python מול קטלוג פריטים ב־PostgreSQL']
+        ],
+        outputs: [
+          ['Excel for Priority ERP / Supplier Portal', 'קובצי Excel ל־Priority ERP ולפורטל הספקים'],
+          ['Statistics Dashboard', 'דשבורד סטטיסטיקה'],
+          ['Email Replies & Alerts', 'תשובות בדוא״ל והתראות']
+        ]
+      },
+      results: [
+        { value: '347', label: ['Orders processed', 'הזמנות שעובדו'] },
+        { value: '5,730', label: ['Rows handled', 'שורות שטופלו'] },
+        { value: '6.7', label: ['Seconds average processing time', 'שניות בממוצע לעיבוד'] },
+        { value: '63.7', label: ['Estimated work hours saved', 'שעות עבודה שנחסכו לפי הערכה'] }
+      ],
+      equipment: ['Python', 'OpenAI API', 'PostgreSQL', 'Email Worker', 'Excel', 'Priority ERP', 'Railway', 'GitHub'],
+      role: [
+        'I designed the architecture, developed the software and the AI and database integrations, and handled testing, cloud deployment on Railway, and ongoing operation. I managed version control in GitHub.',
+        'תכננתי את הארכיטקטורה, פיתחתי את התוכנה וחיברתי אותה למסד הנתונים ול־OpenAI API. הייתי אחראי גם לבדיקות, לפריסה בענן ב־Railway ולתפעול השוטף. ניהלתי את גרסאות הקוד ב־GitHub.'
+      ],
+      images: []
+    },
     {
       type: 'category',
       title: ['Industrial PLC & Machine Control', 'בקרי PLC ובקרת מכונות'],
